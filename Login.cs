@@ -10,24 +10,22 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using System.Threading;
+using ArbitragePayroll;
 
 namespace UI_payroll
 {
-    public partial class frmLogin : MaterialForm
+    public partial class frmLogin : Form
     {
         Database database;
         public frmLogin()
         {
             InitializeComponent();
-        }
-
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
             database = new Database();
             database.GetConnection();
         }
 
-        private void btnSignin_Click(object sender, EventArgs e)
+        private async void btnSignin_Click(object sender, EventArgs e)
         {
             if (txtAdmin.Text != string.Empty && txtPassword.Text != string.Empty)
             {
@@ -42,12 +40,14 @@ namespace UI_payroll
                         command.Parameters.AddWithValue("@adminname", txtAdmin.Text);
                         command.Parameters.AddWithValue("@password", txtPassword.Text);
 
-                        using(SQLiteDataReader reader = command.ExecuteReader())
+                        using (SQLiteDataReader reader = command.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                Monitoring monitoring = new Monitoring();
-                                monitoring.Show();
+                                loading.Visible = true;
+                                await AsyncLoad();
+                                var dashboard = new Dashboard();
+                                dashboard.Show();
                                 Close();
                             }
                             else MessageBox.Show("Wrong Admin Credentials", "Error");
@@ -57,6 +57,15 @@ namespace UI_payroll
                 }
             }
             else MessageBox.Show("Please enter Admin Credentials", "Error");
+        }
+
+        private static Task<int> AsyncLoad()
+        {
+            return Task.Run(() => 
+            {
+                Thread.Sleep(2000);
+                return 0;
+            });
         }
 
         private void txtField_Enter(object sender, KeyPressEventArgs e)

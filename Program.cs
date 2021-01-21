@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArbitragePayroll;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace UI_payroll
             login.FormClosed += new FormClosedEventHandler(FormClosed);
             login.Show();
             Application.Run();
+
         }
 
         static void FormClosed(object sender, FormClosedEventArgs e)

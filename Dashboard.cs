@@ -44,7 +44,9 @@ namespace ArbitragePayroll
 
         private void btnEmployees_Click(object sender, EventArgs e)
         {
-            pages.SetPage("employees");
+            Viewemp emp = new Viewemp();
+            emp.Show();
+            Close();
         }
 
         private void btnAttendance_Click(object sender, EventArgs e)
@@ -211,5 +213,45 @@ namespace ArbitragePayroll
             }
         }
 
+        private void bunifuLabel9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuDatepicker2_onValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuDatepicker1_onValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuShadowPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            timer1.Start();
+        }
+
+        private void bunifuLabel36_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timelabel.Text = DateTime.Now.ToLongTimeString();
+            datelabel.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void bunifuButton1_Click(object sender, EventArgs e)
+        {
+            pages.SetPage("employees");
+        }
     }
 }

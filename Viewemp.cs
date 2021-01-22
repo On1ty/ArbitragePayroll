@@ -71,5 +71,15 @@ namespace UI_payroll
         {
             pages.SetPage("tabLeave");
         }
+
+        private void btnHoliday_Click(object sender, EventArgs e)
+        {
+            pages.SetPage("tabHoliday");
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+          
+        }
     }
 }

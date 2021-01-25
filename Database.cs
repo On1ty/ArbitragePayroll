@@ -71,6 +71,8 @@ namespace ArbitragePayroll
                                 "mobile    TEXT(60) NOT NULL," +
                                 "position TEXT(60) NOT NULL," +
                                 "class TEXT(60) NOT NULL," +
+                                "basic TEXT(60) NOT NULL," +
+                                "allowance TEXT(60) NOT NULL," +
                                 "PRIMARY KEY(id AUTOINCREMENT))";
                         command.CommandText = query;
                         command.Connection = conn;

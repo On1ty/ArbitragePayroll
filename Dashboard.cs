@@ -95,9 +95,9 @@ namespace ArbitragePayroll
                 using (SQLiteCommand command = new SQLiteCommand())
                 {
                     string query = @"INSERT INTO EMP_TBL " +
-                        "(emp_id,last,first,middle,address,dob,civil,nationality,sss,philhealth,pagibig,tin,email,mobile,position,class)" +
+                        "(emp_id,last,first,middle,address,dob,civil,nationality,sss,philhealth,pagibig,tin,email,mobile,position,class,basic,allowance)" +
                         "VALUES " +
-                        "(@emp_id,@last,@first,@middle,@address,@dob,@civil,@nationality,@sss,@philhealth,@pagibig,@tin,@email,@mobile,@position,@class)";
+                        "(@emp_id,@last,@first,@middle,@address,@dob,@civil,@nationality,@sss,@philhealth,@pagibig,@tin,@email,@mobile,@position,@class,@basic,@allowance)";
 
                     command.CommandText = query;
                     command.Connection = conn;
@@ -117,6 +117,9 @@ namespace ArbitragePayroll
                     command.Parameters.AddWithValue("@mobile", txtMobile.Text);
                     command.Parameters.AddWithValue("@position", txtPosition.Text);
                     command.Parameters.AddWithValue("@class", txtType.GetItemText(txtType.SelectedItem));
+                    command.Parameters.AddWithValue("@basic", txtBasic.Text);
+                    command.Parameters.AddWithValue("@allowance", txtAllowance.Text);
+
 
                     if (command.ExecuteNonQuery() > 0)
                     {

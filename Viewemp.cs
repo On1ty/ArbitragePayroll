@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArbitragePayroll;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,41 +16,6 @@ namespace UI_payroll
         public Viewemp()
         {
             InitializeComponent();
-        }
-
-        private void Viewemp_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSaveEmployee_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuCustomLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuCustomLabel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuCustomLabel3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuCustomLabel4_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnEmp_Click(object sender, EventArgs e)
@@ -79,7 +45,9 @@ namespace UI_payroll
 
         private void Back_Click(object sender, EventArgs e)
         {
-          
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
+            Close();
         }
     }
 }

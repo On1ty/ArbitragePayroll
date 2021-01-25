@@ -44,9 +44,7 @@ namespace ArbitragePayroll
 
         private void btnEmployees_Click(object sender, EventArgs e)
         {
-            Viewemp emp = new Viewemp();
-            emp.Show();
-            Close();
+            collapseAnimation.Start();
         }
 
         private void btnAttendance_Click(object sender, EventArgs e)
@@ -57,6 +55,31 @@ namespace ArbitragePayroll
         private void btnPayslip_Click(object sender, EventArgs e)
         {
             pages.SetPage("payslip");
+        }
+
+        private void btnPayrollHistory_Click(object sender, EventArgs e)
+        {
+            pages.SetPage("payroll_history");
+        }
+
+        private void b_Click(object sender, EventArgs e)
+        {
+            pages.SetPage("attendance_history");
+        }
+
+        private void Leave_Click(object sender, EventArgs e)
+        {
+            pages.SetPage("leave");
+        }
+
+        private void btnHoliday_Click(object sender, EventArgs e)
+        {
+            pages.SetPage("holiday");
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            pages.SetPage("dashboard");
         }
 
         private void btnSaveEmployee_Click(object sender, EventArgs e)
@@ -173,16 +196,7 @@ namespace ArbitragePayroll
                 conn.Close();
             }
         }
-
-        private void clear()
-        {
-            txtType.SelectedIndex = -1;
-            foreach (Control control in tabPage1.Controls)
-            {
-                if (control is BunifuTextBox)
-                    ((BunifuTextBox)control).Clear();
-            }
-        }
+        
 
         private void loadEmployeeTable()
         {
@@ -216,34 +230,9 @@ namespace ArbitragePayroll
             }
         }
 
-        private void bunifuLabel9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuDatepicker2_onValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuDatepicker1_onValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void bunifuShadowPanel1_Paint(object sender, PaintEventArgs e)
         {
             timer1.Start();
-        }
-
-        private void bunifuLabel36_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -252,9 +241,41 @@ namespace ArbitragePayroll
             datelabel.Text = DateTime.Now.ToLongDateString();
         }
 
-        private void bunifuButton1_Click(object sender, EventArgs e)
+        private bool isCollapsed = false;
+        private void collapseAnimation_Tick(object sender, EventArgs e)
         {
-            pages.SetPage("employees");
+            if (isCollapsed)
+            {
+                panelCollapse.Height += 10;
+                adjustPanel.Location = new Point(adjustPanel.Location.X, adjustPanel.Location.Y + 10);
+
+                if(panelCollapse.Size == panelCollapse.MaximumSize)
+                {
+                    collapseAnimation.Stop();
+                    isCollapsed = false;
+                }
+            }
+            else
+            {
+                panelCollapse.Height -= 10;
+                adjustPanel.Location = new Point(adjustPanel.Location.X, adjustPanel.Location.Y - 10);
+
+                if (panelCollapse.Size == panelCollapse.MinimumSize)
+                {
+                    collapseAnimation.Stop();
+                    isCollapsed = true;
+                }
+            }
+        }
+
+        private void clear()
+        {
+            txtType.SelectedIndex = -1;
+            foreach (Control control in tabPage1.Controls)
+            {
+                if (control is BunifuTextBox)
+                    ((BunifuTextBox)control).Clear();
+            }
         }
     }
 }

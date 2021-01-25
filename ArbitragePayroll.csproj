@@ -226,6 +226,12 @@
   <ItemGroup>
     <None Include="Resources\tachometer-alt-solid.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PngItem_2402231.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PngItem_24022311.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

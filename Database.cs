@@ -82,6 +82,21 @@ namespace ArbitragePayroll
                         command.CommandText = query;
                         command.Connection = conn;
                         command.ExecuteNonQuery();
+
+                        /**
+                         *CREATE ATTENDANCE TABLE
+                         */
+                        query = @"CREATE TABLE ATTENDANCE (" +
+                                "id INTEGER NOT NULL UNIQUE," +
+                                "emp_id TEXT(60) NOT NULL," +
+                                "date_in TEXT(60) NOT NULL," +
+                                "time_in TEXT(60) NOT NULL," +
+                                "date_out TEXT(60)," +
+                                "time_out TEXT(60)," +
+                                "PRIMARY KEY(id AUTOINCREMENT))";
+                        command.CommandText = query;
+                        command.Connection = conn;
+                        command.ExecuteNonQuery();
                     }
                     conn.Close();
                 }

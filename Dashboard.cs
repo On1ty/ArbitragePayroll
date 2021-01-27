@@ -234,37 +234,7 @@ namespace ArbitragePayroll
 
         private void loadAttendanceTable()
         {
-            using (SQLiteConnection conn = new SQLiteConnection(database.ConnectionString))
-            {
-                conn.Open();
-                using (SQLiteCommand command = new SQLiteCommand())
-                {
-                    string query = @"SELECT a.id, e.emp_id, last, first, middle, time_in, time_out, date_in " +
-                                    "FROM EMP_TBL as e LEFT JOIN ATTENDANCE as a ON e.emp_id = a.emp_id AND date_in = date('now')";
-
-                    command.CommandText = query;
-                    command.Connection = conn;
-
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            attendanceTbl.Rows.Add(new object[]
-                            {
-                                reader.GetValue(reader.GetOrdinal("id")),
-                                reader.GetValue(reader.GetOrdinal("emp_id")),
-                                reader.GetValue(reader.GetOrdinal("last")),
-                                reader.GetValue(reader.GetOrdinal("first")),
-                                reader.GetValue(reader.GetOrdinal("middle")),
-                                reader.GetValue(reader.GetOrdinal("date_in")),
-                                reader.GetValue(reader.GetOrdinal("time_in")),
-                                reader.GetValue(reader.GetOrdinal("time_out")),
-                            });
-                        }
-                    }
-                }
-                conn.Close();
-            }
+            timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -307,88 +277,6 @@ namespace ArbitragePayroll
             {
                 if (control is BunifuTextBox)
                     ((BunifuTextBox)control).Clear();
-            }
-        }
-
-        private void btnTimeIn_Click(object sender, EventArgs e)
-        {
-            string last_name = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index].Cells[2].Value.ToString();
-            string emp_id = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index].Cells[1].Value.ToString();
-
-            using (SQLiteConnection conn = new SQLiteConnection(database.ConnectionString))
-            {
-                conn.Open();
-                using (SQLiteCommand command = new SQLiteCommand())
-                {
-                    string query = @"INSERT INTO ATTENDANCE " +
-                        "(emp_id,date_in,time_in)" +
-                        "VALUES " +
-                        "(@emp_id,@date_in,@time_in)";
-
-                    command.CommandText = query;
-                    command.Connection = conn;
-                    command.Parameters.AddWithValue("@emp_id", emp_id);
-                    command.Parameters.AddWithValue("@date_in", DateTime.Now.ToString("yyyy-MM-dd"));
-                    command.Parameters.AddWithValue("@time_in", DateTime.Now.ToShortTimeString());
-
-                    if (command.ExecuteNonQuery() > 0)
-                    {
-                        MessageBox.Show($"{last_name} successfully timed in", "Success");
-                        attendanceTbl.Rows.Clear();
-                        loadAttendanceTable();
-                    }
-                    else MessageBox.Show("There is a problem while inserting the data. Call the Programmer to resolve this problem.", "Error");
-                }
-                conn.Close();
-            }
-        }
-
-        private void btnTimeOut_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow row = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index];
-            string rowId = row.Cells[0].Value.ToString();
-            string empId = row.Cells[1].Value.ToString();
-            string last_name = row.Cells[2].Value.ToString();
-
-
-            using (SQLiteConnection conn = new SQLiteConnection(database.ConnectionString))
-            {
-                bool timedIn = false;
-
-                conn.Open();
-                using (SQLiteCommand command = new SQLiteCommand())
-                {
-                    string query = @"SELECT * FROM ATTENDANCE WHERE emp_id=@empid AND date_in=date('now')";
-                    command.CommandText = query;
-                    command.Connection = conn;
-                    command.Parameters.AddWithValue("@empid", empId);
-
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read()) timedIn = true;
-                    }
-
-                    if (timedIn)
-                    {
-                        query = @"UPDATE ATTENDANCE SET date_out=@date_out, time_out=@time_out WHERE id = @id";
-
-                        command.CommandText = query;
-                        command.Connection = conn;
-                        command.Parameters.AddWithValue("@id", rowId);
-                        command.Parameters.AddWithValue("@date_out", DateTime.Now.ToString("yyyy-MM-dd"));
-                        command.Parameters.AddWithValue("@time_out", DateTime.Now.ToShortTimeString());
-
-                        if (command.ExecuteNonQuery() > 0)
-                        {
-                            MessageBox.Show($"{last_name} successfully timed out", "Success");
-                            attendanceTbl.Rows.Clear();
-                            loadAttendanceTable();
-                        }
-                        else MessageBox.Show("There is a problem while inserting the data. Call the Programmer to resolve this problem.", "Error");
-                    }
-                    else MessageBox.Show($"{last_name} need to time in first!", "Error");
-                }
-                conn.Close();
             }
         }
     }

@@ -93,6 +93,7 @@ namespace ArbitragePayroll
                                 "time_in TEXT(60) NOT NULL," +
                                 "date_out TEXT(60)," +
                                 "time_out TEXT(60)," +
+                                "status TEXT(60) NOT NULL," +
                                 "PRIMARY KEY(id AUTOINCREMENT))";
                         command.CommandText = query;
                         command.Connection = conn;

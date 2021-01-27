@@ -17,10 +17,10 @@ namespace UI_payroll
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var login = new frmLogin();
-            login.FormClosed += new FormClosedEventHandler(FormClosed);
-            login.Show();
-            Application.Run();
+            //var login = new frmLogin();
+            //login.FormClosed += new FormClosedEventHandler(FormClosed);
+            //login.Show();
+            Application.Run(new Dashboard());
 
         }
 

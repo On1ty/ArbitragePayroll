@@ -203,6 +203,16 @@ namespace ArbitragePayroll.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap search_3_24 {
+            get {
+                object obj = ResourceManager.GetObject("search-3-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sick_leave_white {
             get {
                 object obj = ResourceManager.GetObject("sick-leave-white", resourceCulture);

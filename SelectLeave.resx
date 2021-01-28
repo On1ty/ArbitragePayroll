@@ -117,47 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="clockwhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>clockwhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="arbitrage-no-white-border" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arbitrage-no-white-border.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clock" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>clock.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PngItem_24022311" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PngItem_24022311.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pngwing.com" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pngwing.com.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PngItem_2402231" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PngItem_2402231.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sick-leave-white1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sick-leave-white1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clipart1247231" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clipart1247231.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="arb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>arb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sick-leave-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sick-leave-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cake-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cake-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tachometer-alt-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tachometer-alt-solid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="arb-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>arb-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="beach-lounger-umbrella-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\beach-lounger-umbrella-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="bunifuElipse1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bunifuPanel1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAvgAAACdCAYAAADBhAwjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAN/SURBVHhe7dixjcMwFAVBhS7D4YUuxSU4dBmqXDrqxORK
+        4GIGeCDwK1hwAwAAgs7zfI7tZmZmZma23H5m1t/G4TUGAACs6z3z/i/wr+oHAADWtc+8F/gAABAg8AEA
+        IETgAwBAiMAHAIAQgQ8AACECHwAAQgQ+AACECHwAAAgR+AAAECLwAQAgROADAECIwAcAgBCBDwAAIQIf
+        AABCBD4AAIQIfAAACBH4AAAQIvABACBE4AMAQIjABwCAEIEPAAAhAh8AAEIEPgAAhAh8AAAIEfgAABAi
+        8AEAIETgAwBAiMAHAIAQgQ8AACECHwAAQgQ+AACECHwAAAgR+AAAECLwAQAgROADAECIwAcAgBCBDwAA
+        IQIfAABCBD4AAIQIfAAACBH4AAAQIvABACBE4AMAQIjABwCAEIEPAAAhAh8AAEIEPgAAhAh8AAAIEfgA
+        ABAi8AEAIETgAwBAiMAHAIAQgQ8AACECHwAAQgQ+AACECHwAAAgR+AAAECLwAQAgROADAECIwAcAgBCB
+        DwAAIQIfAABCBD4AAIQIfAAACBH4AAAQIvABACBE4AMAQIjABwCAEIEPAAAhAh8AAEIEPgAAhAh8AAAI
+        EfgAABAi8AEAIETgAwBAiMAHAIAQgQ8AACECHwAAQgQ+AACECHwAAAgR+AAAECLwAQAgROADAECIwAcA
+        gBCBDwAAIQIfAABCBD4AAIQIfAAACBH4AAAQIvABACBE4AMAQIjABwCAEIEPAAAhAh8AAEIEPgAAhAh8
+        AAAIEfgAABAi8AEAIETgAwBAiMAHAIAQgQ8AACECHwAAQgQ+AACECHwAAAgR+AAAECLwAQAgROADAECI
+        wAcAgBCBDwAAIQIfAABCBD4AAIQIfAAACBH4AAAQIvABACBE4AMAQIjABwCAEIEPAAAhAh8AAEIEPgAA
+        hAh8AAAIEfgAABAi8AEAIETgAwBAiMAHAIAQgQ8AACECHwAAQgQ+AACECHwAAAgR+AAAECLwAQAgROAD
+        AECIwAcAgBCBDwAAIQIfAABCBD4AAIQIfAAACBH4AAAQIvABACBE4AMAQIjABwCAEIEPAAAhAh8AAEIE
+        PgAAhAh8AAAIEfgAABAi8AEAIETgAwBAiMAHAIAQgQ8AACECHwAAQv4F/vu+AQAAKzqO4zvz/jZun7Hr
+        J9/MzMzMzBbaFffjfcy0BwAAGrbtF/hfcplOBH4FAAAAAElFTkSuQmCC
+</value>
   </data>
 </root>

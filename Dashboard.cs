@@ -398,5 +398,11 @@ namespace ArbitragePayroll
                 conn.Close();
             }
         }
+
+        private void btnLeave_Click(object sender, EventArgs e)
+        {
+            SelectLeave selectLeave = new SelectLeave();
+            selectLeave.ShowDialog();
+        }
     }
 }

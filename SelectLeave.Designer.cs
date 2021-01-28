@@ -36,7 +36,7 @@ namespace ArbitragePayroll
             this.bunifuTileButton4 = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButton3 = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButton2 = new Bunifu.Framework.UI.BunifuTileButton();
-            this.bunifuTileButton5 = new Bunifu.Framework.UI.BunifuTileButton();
+            this.btnClose = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +57,7 @@ namespace ArbitragePayroll
             this.bunifuPanel1.Controls.Add(this.bunifuTileButton4);
             this.bunifuPanel1.Controls.Add(this.bunifuTileButton3);
             this.bunifuPanel1.Controls.Add(this.bunifuTileButton2);
-            this.bunifuPanel1.Controls.Add(this.bunifuTileButton5);
+            this.bunifuPanel1.Controls.Add(this.btnClose);
             this.bunifuPanel1.Controls.Add(this.bunifuTileButton1);
             this.bunifuPanel1.Location = new System.Drawing.Point(12, 12);
             this.bunifuPanel1.Name = "bunifuPanel1";
@@ -122,24 +122,25 @@ namespace ArbitragePayroll
             this.bunifuTileButton2.Size = new System.Drawing.Size(140, 140);
             this.bunifuTileButton2.TabIndex = 5;
             // 
-            // bunifuTileButton5
+            // btnClose
             // 
-            this.bunifuTileButton5.BackColor = System.Drawing.Color.Maroon;
-            this.bunifuTileButton5.color = System.Drawing.Color.Maroon;
-            this.bunifuTileButton5.colorActive = System.Drawing.Color.LightCoral;
-            this.bunifuTileButton5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTileButton5.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuTileButton5.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton5.Image = global::ArbitragePayroll.Properties.Resources.pngwing_com;
-            this.bunifuTileButton5.ImagePosition = 30;
-            this.bunifuTileButton5.ImageZoom = 50;
-            this.bunifuTileButton5.LabelPosition = 35;
-            this.bunifuTileButton5.LabelText = "Close";
-            this.bunifuTileButton5.Location = new System.Drawing.Point(614, 8);
-            this.bunifuTileButton5.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.bunifuTileButton5.Name = "bunifuTileButton5";
-            this.bunifuTileButton5.Size = new System.Drawing.Size(140, 140);
-            this.bunifuTileButton5.TabIndex = 4;
+            this.btnClose.BackColor = System.Drawing.Color.Maroon;
+            this.btnClose.color = System.Drawing.Color.Maroon;
+            this.btnClose.colorActive = System.Drawing.Color.LightCoral;
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.Image = global::ArbitragePayroll.Properties.Resources.pngwing_com;
+            this.btnClose.ImagePosition = 30;
+            this.btnClose.ImageZoom = 50;
+            this.btnClose.LabelPosition = 35;
+            this.btnClose.LabelText = "Close";
+            this.btnClose.Location = new System.Drawing.Point(614, 8);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(140, 140);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // bunifuTileButton1
             // 
@@ -169,6 +170,7 @@ namespace ArbitragePayroll
             this.Controls.Add(this.bunifuPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SelectLeave";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SelectLeave";
             this.bunifuPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -180,7 +182,7 @@ namespace ArbitragePayroll
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private Bunifu.UI.WinForms.BunifuPanel bunifuPanel1;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton1;
-        private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton5;
+        private Bunifu.Framework.UI.BunifuTileButton btnClose;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton4;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton3;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton2;

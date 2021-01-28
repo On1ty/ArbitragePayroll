@@ -267,6 +267,15 @@
   <ItemGroup>
     <None Include="Resources\beach-lounger-umbrella-512.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\businessman-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Andoy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipart4384961.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

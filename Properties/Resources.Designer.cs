@@ -63,6 +63,16 @@ namespace ArbitragePayroll.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Andoy {
+            get {
+                object obj = ResourceManager.GetObject("Andoy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arb {
             get {
                 object obj = ResourceManager.GetObject("arb", resourceCulture);
@@ -103,6 +113,16 @@ namespace ArbitragePayroll.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap businessman_64 {
+            get {
+                object obj = ResourceManager.GetObject("businessman-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cake_white {
             get {
                 object obj = ResourceManager.GetObject("cake-white", resourceCulture);
@@ -116,6 +136,16 @@ namespace ArbitragePayroll.Properties {
         internal static System.Drawing.Bitmap clipart1247231 {
             get {
                 object obj = ResourceManager.GetObject("clipart1247231", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clipart4384961 {
+            get {
+                object obj = ResourceManager.GetObject("clipart4384961", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

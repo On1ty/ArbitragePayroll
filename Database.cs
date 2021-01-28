@@ -98,6 +98,21 @@ namespace ArbitragePayroll
                         command.CommandText = query;
                         command.Connection = conn;
                         command.ExecuteNonQuery();
+
+                        /**
+                         *CREATE LEAVE TABLE
+                         */
+                        query = @"CREATE TABLE LEAVE (" +
+                                "id    INTEGER NOT NULL," +
+	                            "emp_id    TEXT(60) NOT NULL," +
+                                "vacation  INTEGER NOT NULL," +
+	                            "sick INTEGER NOT NULL," +
+                                "emergency INTEGER NOT NULL," +
+                                "birthday  INTEGER NOT NULL," +
+                                "PRIMARY KEY(id AUTOINCREMENT))";
+                        command.CommandText = query;
+                        command.Connection = conn;
+                        command.ExecuteNonQuery();
                     }
                     conn.Close();
                 }

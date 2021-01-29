@@ -50,11 +50,16 @@ namespace ArbitragePayroll
                         command.Connection = conn;
                         command.ExecuteNonQuery();
 
+                        query = @"INSERT INTO ADMIN_LOGIN (adminname, password) VALUES ('admin', 'admin')";
+                        command.CommandText = query;
+                        command.Connection = conn;
+                        command.ExecuteNonQuery();
+
                         /**
                          *CREATE EMPLOYEE TABLE
                          */
                         query = @"CREATE TABLE EMP_TBL (" +
-                                "id INTEGER NOT NULL," +
+                                "id_emp_tbl INTEGER NOT NULL," +
                                 "emp_id   TEXT(60) NOT NULL," +
                                 "last  TEXT(60) NOT NULL," +
                                 "first TEXT(60) NOT NULL," +
@@ -73,12 +78,16 @@ namespace ArbitragePayroll
                                 "class TEXT(60) NOT NULL," +
                                 "basic TEXT(60) NOT NULL," +
                                 "allowance TEXT(60) NOT NULL," +
-                                "PRIMARY KEY(id AUTOINCREMENT))";
+                                "PRIMARY KEY(id_emp_tbl AUTOINCREMENT))";
                         command.CommandText = query;
                         command.Connection = conn;
                         command.ExecuteNonQuery();
 
-                        query = @"INSERT INTO ADMIN_LOGIN (adminname, password) VALUES ('admin', 'admin')";
+                        query = @"INSERT INTO EMP_TBL
+                                (emp_id,last,first,middle,address,dob,civil,nationality,sss,philhealth,pagibig,tin,email,mobile,position,class,basic,allowance)
+                                VALUES
+                                ('20-0102-003', 'Pallo', 'Juan Miguel', '', '571 D. Ignacio Compound, Caloocan City', '01-03-1999', 'Single', 'Filipino', '', '', '', '', 'juanity.andoy@gmail.com', '09165569164', 'Programmer', 'Regular', '500', '1500'),
+                                ('20-0102-004', 'Andoy', 'Juan Miguel', '', '571 D. Ignacio Compound, Caloocan City', '01-03-1999', 'Single', 'Filipino', '', '', '', '', 'juanity.andoy@gmail.com', '09165569164', 'Programmer', 'Regular', '500', '1500')";
                         command.CommandText = query;
                         command.Connection = conn;
                         command.ExecuteNonQuery();
@@ -87,14 +96,14 @@ namespace ArbitragePayroll
                          *CREATE ATTENDANCE TABLE
                          */
                         query = @"CREATE TABLE ATTENDANCE (" +
-                                "id INTEGER NOT NULL UNIQUE," +
+                                "id_attend_tbl INTEGER NOT NULL UNIQUE," +
                                 "emp_id TEXT(60) NOT NULL," +
                                 "date_in TEXT(60) NOT NULL," +
                                 "time_in TEXT(60) NOT NULL," +
                                 "date_out TEXT(60)," +
                                 "time_out TEXT(60)," +
                                 "status TEXT(60) NOT NULL," +
-                                "PRIMARY KEY(id AUTOINCREMENT))";
+                                "PRIMARY KEY(id_attend_tbl AUTOINCREMENT))";
                         command.CommandText = query;
                         command.Connection = conn;
                         command.ExecuteNonQuery();
@@ -103,13 +112,13 @@ namespace ArbitragePayroll
                          *CREATE LEAVE TABLE
                          */
                         query = @"CREATE TABLE LEAVE (" +
-                                "id    INTEGER NOT NULL," +
+                                "id_leave_tbl    INTEGER NOT NULL," +
 	                            "emp_id    TEXT(60) NOT NULL," +
                                 "vacation  INTEGER NOT NULL," +
 	                            "sick INTEGER NOT NULL," +
                                 "emergency INTEGER NOT NULL," +
                                 "birthday  INTEGER NOT NULL," +
-                                "PRIMARY KEY(id AUTOINCREMENT))";
+                                "PRIMARY KEY(id_leave_tbl AUTOINCREMENT))";
                         command.CommandText = query;
                         command.Connection = conn;
                         command.ExecuteNonQuery();

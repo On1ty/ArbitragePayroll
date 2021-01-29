@@ -17,6 +17,7 @@ namespace ArbitragePayroll
     public partial class Dashboard : Form
     {
         Database database;
+        private bool updateInformation = false;
 
         public Dashboard()
         {
@@ -93,11 +94,14 @@ namespace ArbitragePayroll
                 if (control is BunifuTextBox)
                 {
                     BunifuTextBox textBox = control as BunifuTextBox;
-                    if (textBox.Text == string.Empty)
+                    if (textBox.Text == "")
                     {
                         string[] optionalFields = {"txtMiddle", "txtSss", "txtTin", "txtPhilhealth", "txtPagibig"};
 
-                        if (!optionalFields.Contains(textBox.Name)) error = true;
+                        if (optionalFields.Contains(textBox.Name)) 
+                            error = false;
+                        else
+                            error = true;
                     }
                 }
                 else if (control is BunifuDropdown)
@@ -185,6 +189,7 @@ namespace ArbitragePayroll
                         {
                             empTbl.Rows.Add(new object[]
                             {
+                                reader.GetValue(reader.GetOrdinal("id_emp_tbl")),
                                 reader.GetValue(reader.GetOrdinal("emp_id")),
                                 reader.GetValue(reader.GetOrdinal("last")),
                                 reader.GetValue(reader.GetOrdinal("first")),
@@ -217,6 +222,7 @@ namespace ArbitragePayroll
                         {
                             empTbl.Rows.Add(new object[]
                             {
+                                reader.GetValue(reader.GetOrdinal("id_emp_tbl")),
                                 reader.GetValue(reader.GetOrdinal("emp_id")),
                                 reader.GetValue(reader.GetOrdinal("last")),
                                 reader.GetValue(reader.GetOrdinal("first")),
@@ -239,7 +245,7 @@ namespace ArbitragePayroll
                 conn.Open();
                 using (SQLiteCommand command = new SQLiteCommand())
                 {
-                    string query = @"SELECT a.id, e.emp_id, last, first, middle, time_in, time_out, date_in " +
+                    string query = @"SELECT a.id_attend_tbl, e.emp_id, last, first, middle, time_in, time_out, date_in " +
                                     "FROM EMP_TBL as e LEFT JOIN ATTENDANCE as a ON e.emp_id = a.emp_id AND date_in = date('now')";
 
                     command.CommandText = query;
@@ -251,7 +257,7 @@ namespace ArbitragePayroll
                         {
                             attendanceTbl.Rows.Add(new object[]
                             {
-                                reader.GetValue(reader.GetOrdinal("id")),
+                                reader.GetValue(reader.GetOrdinal("id_attend_tbl")),
                                 reader.GetValue(reader.GetOrdinal("emp_id")),
                                 reader.GetValue(reader.GetOrdinal("last")),
                                 reader.GetValue(reader.GetOrdinal("first")),
@@ -403,6 +409,57 @@ namespace ArbitragePayroll
         {
             SelectLeave selectLeave = new SelectLeave();
             selectLeave.ShowDialog();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string rowId = empTbl.Rows[empTbl.CurrentRow.Index].Cells[0].Value.ToString();
+
+            updateInformation = true;
+            pages.SetPage("add");
+
+            using (SQLiteConnection conn = new SQLiteConnection(database.ConnectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand command = new SQLiteCommand())
+                {
+                    string query = @"SELECT * FROM EMP_TBL WHERE id_emp_tbl = @rowid";
+                    command.CommandText = query;
+                    command.Connection = conn;
+                    command.Parameters.AddWithValue("@rowid", rowId);
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            txtFirst.Text = reader.GetValue(reader.GetOrdinal("first")).ToString();
+                            txtMiddle.Text = reader.GetValue(reader.GetOrdinal("middle")).ToString();
+                            txtLast.Text = reader.GetValue(reader.GetOrdinal("last")).ToString();
+                            txtAddress.Text = reader.GetValue(reader.GetOrdinal("address")).ToString();
+                            txtDob.Value = DateTime.Parse(reader.GetValue(reader.GetOrdinal("dob")).ToString());
+                            txtCivil.Text = reader.GetValue(reader.GetOrdinal("civil")).ToString();
+                            txtNationality.Text = reader.GetValue(reader.GetOrdinal("nationality")).ToString();
+                            txtSss.Text = reader.GetValue(reader.GetOrdinal("sss")).ToString();
+                            txtPhilhealth.Text = reader.GetValue(reader.GetOrdinal("philhealth")).ToString();
+                            txtPagibig.Text = reader.GetValue(reader.GetOrdinal("pagibig")).ToString();
+                            txtTin.Text = reader.GetValue(reader.GetOrdinal("tin")).ToString();
+                            txtEmail.Text = reader.GetValue(reader.GetOrdinal("email")).ToString();
+                            txtMobile.Text = reader.GetValue(reader.GetOrdinal("mobile")).ToString();
+                            txtEmpId.Text = reader.GetValue(reader.GetOrdinal("emp_id")).ToString();
+                            txtPosition.Text = reader.GetValue(reader.GetOrdinal("position")).ToString();
+                            txtType.Text = reader.GetValue(reader.GetOrdinal("class")).ToString();
+                            txtBasic.Text = reader.GetValue(reader.GetOrdinal("basic")).ToString();
+                            txtAllowance.Text = reader.GetValue(reader.GetOrdinal("allowance")).ToString();
+                        }
+                    }
+                }
+                conn.Close();
+            }
+        }
+
+        private void tabPage1_Leave(object sender, EventArgs e)
+        {
+            updateInformation = false;
         }
     }
 }

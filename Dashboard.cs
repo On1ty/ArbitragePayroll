@@ -42,6 +42,8 @@ namespace ArbitragePayroll
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            clear();
+            updateInformation = false;
             pages.SetPage("add");
         }
 
@@ -87,6 +89,8 @@ namespace ArbitragePayroll
 
         private void btnSaveEmployee_Click(object sender, EventArgs e)
         {
+            string rowId = empTbl.Rows[empTbl.CurrentRow.Index].Cells[0].Value.ToString();
+
             bool error = false;
 
             foreach (Control control in tabPage1.Controls)
@@ -123,10 +127,26 @@ namespace ArbitragePayroll
                 conn.Open();
                 using (SQLiteCommand command = new SQLiteCommand())
                 {
-                    string query = @"INSERT INTO EMP_TBL " +
-                        "(emp_id,last,first,middle,address,dob,civil,nationality,sss,philhealth,pagibig,tin,email,mobile,position,class,basic,allowance)" +
-                        "VALUES " +
-                        "(@emp_id,@last,@first,@middle,@address,@dob,@civil,@nationality,@sss,@philhealth,@pagibig,@tin,@email,@mobile,@position,@class,@basic,@allowance)";
+                    string query = null;
+                    string message = null;
+
+                    if (updateInformation)
+                    {
+                        query = @"UPDATE EMP_TBL " +
+                            "SET emp_id=@emp_id,last=@last,first=@first,middle=@middle,address=@address,dob=@dob,civil=@civil," + 
+                            "nationality=@nationality,sss=@sss,philhealth=@philhealth,pagibig=@pagibig,tin=@tin,email=@email," +
+                            "mobile=@mobile,position=@position,class=@class,basic=@basic,allowance=@allowance WHERE id_emp_tbl=@rowid";
+                        message = "Employee details updated successfully!";
+                        command.Parameters.AddWithValue("@rowid", rowId);
+                    }
+                    else
+                    {
+                        query = @"INSERT INTO EMP_TBL " +
+                            "(emp_id,last,first,middle,address,dob,civil,nationality,sss,philhealth,pagibig,tin,email,mobile,position,class,basic,allowance)" +
+                            "VALUES " +
+                            "(@emp_id,@last,@first,@middle,@address,@dob,@civil,@nationality,@sss,@philhealth,@pagibig,@tin,@email,@mobile,@position,@class,@basic,@allowance)";
+                        message = "New Employee inserted!";
+                    }
 
                     command.CommandText = query;
                     command.Connection = conn;
@@ -151,7 +171,7 @@ namespace ArbitragePayroll
 
                     if (command.ExecuteNonQuery() > 0)
                     {
-                        MessageBox.Show("New Employee inserted!", "Success");
+                        MessageBox.Show(message, "Success");
                         empTbl.Rows.Clear();
                         attendanceTbl.Rows.Clear();
                         loadAttendanceTable();
@@ -163,6 +183,7 @@ namespace ArbitragePayroll
                 conn.Close();
             }
         }
+
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             empTbl.Rows.Clear();
@@ -318,10 +339,10 @@ namespace ArbitragePayroll
 
         private void btnTimeIn_Click(object sender, EventArgs e)
         {
-            string last_name = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index].Cells[2].Value.ToString();
-            string emp_id = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index].Cells[1].Value.ToString();
+            string lastName = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index].Cells[2].Value.ToString();
+            string empId = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index].Cells[1].Value.ToString();
 
-            DialogResult confirmation = MessageBox.Show($"Are you sure to time in {last_name}?", "Confirmation", MessageBoxButtons.YesNo);
+            DialogResult confirmation = MessageBox.Show($"Are you sure to time in {lastName}?", "Confirmation", MessageBoxButtons.YesNo);
 
             if (confirmation == DialogResult.No) 
                 return;
@@ -331,25 +352,31 @@ namespace ArbitragePayroll
                 conn.Open();
                 using (SQLiteCommand command = new SQLiteCommand())
                 {
-                    string query = @"INSERT INTO ATTENDANCE " +
+                    bool timeInAlready = checkIfTimedIn(empId,command,conn);
+
+                    if (!timeInAlready)
+                    {
+                        string query = @"INSERT INTO ATTENDANCE " +
                         "(emp_id,date_in,time_in,status)" +
                         "VALUES " +
                         "(@emp_id,@date_in,@time_in,@status)";
 
-                    command.CommandText = query;
-                    command.Connection = conn;
-                    command.Parameters.AddWithValue("@emp_id", emp_id);
-                    command.Parameters.AddWithValue("@date_in", DateTime.Now.ToString("yyyy-MM-dd"));
-                    command.Parameters.AddWithValue("@time_in", DateTime.Now.ToShortTimeString());
-                    command.Parameters.AddWithValue("@status", "present");
+                        command.CommandText = query;
+                        command.Connection = conn;
+                        command.Parameters.AddWithValue("@emp_id", empId);
+                        command.Parameters.AddWithValue("@date_in", DateTime.Now.ToString("yyyy-MM-dd"));
+                        command.Parameters.AddWithValue("@time_in", DateTime.Now.ToShortTimeString());
+                        command.Parameters.AddWithValue("@status", "present");
 
-                    if (command.ExecuteNonQuery() > 0)
-                    {
-                        MessageBox.Show($"{last_name} successfully timed in", "Success");
-                        attendanceTbl.Rows.Clear();
-                        loadAttendanceTable();
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            MessageBox.Show($"{lastName} successfully timed in", "Success");
+                            attendanceTbl.Rows.Clear();
+                            loadAttendanceTable();
+                        }
+                        else MessageBox.Show("There is a problem while inserting the data. Call the Programmer to resolve this problem.", "Error");
                     }
-                    else MessageBox.Show("There is a problem while inserting the data. Call the Programmer to resolve this problem.", "Error");
+                    else MessageBox.Show($"{lastName} already timed in for this day", "Error");
                 }
                 conn.Close();
             }
@@ -357,7 +384,6 @@ namespace ArbitragePayroll
 
         private void btnTimeOut_Click(object sender, EventArgs e)
         {
-            bool isTimeIn = false;
             string rowId = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index].Cells[0].Value.ToString();
             string empId = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index].Cells[1].Value.ToString();
             string last_name = attendanceTbl.Rows[attendanceTbl.CurrentRow.Index].Cells[2].Value.ToString();
@@ -379,27 +405,43 @@ namespace ArbitragePayroll
 
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.Read()) isTimeIn = true;
-                    }
-
-                    if (isTimeIn)
-                    {
-                        query = @"UPDATE ATTENDANCE SET date_out=@date_out, time_out=@time_out WHERE id = @id";
-                        command.CommandText = query;
-                        command.Connection = conn;
-                        command.Parameters.AddWithValue("@id", rowId);
-                        command.Parameters.AddWithValue("@date_out", DateTime.Now.ToString("yyyy-MM-dd"));
-                        command.Parameters.AddWithValue("@time_out", DateTime.Now.ToShortTimeString());
-
-                        if (command.ExecuteNonQuery() > 0)
+                        if (!reader.Read())
                         {
-                            MessageBox.Show($"{last_name} successfully timed out", "Success");
-                            attendanceTbl.Rows.Clear();
-                            loadAttendanceTable();
+                            MessageBox.Show($"{last_name} need to time in first!", "Error");
+                            conn.Close();
+                            return;
                         }
-                        else MessageBox.Show("There is a problem while inserting the data. Call the Programmer to resolve this problem.", "Error");
                     }
-                    else MessageBox.Show($"{last_name} need to time in first!", "Error");
+
+                    query = @"SELECT * FROM ATTENDANCE WHERE emp_id=@empid AND date_out IS NOT NULL";
+                    command.CommandText = query;
+                    command.Connection = conn;
+                    command.Parameters.AddWithValue("@empid", empId);
+
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            MessageBox.Show($"{last_name} already time out for this day", "Error");
+                            conn.Close();
+                            return;
+                        }
+                    }
+
+                    query = @"UPDATE ATTENDANCE SET date_out=@date_out, time_out=@time_out WHERE id_attend_tbl = @id";
+                    command.CommandText = query;
+                    command.Connection = conn;
+                    command.Parameters.AddWithValue("@id", rowId);
+                    command.Parameters.AddWithValue("@date_out", DateTime.Now.ToString("yyyy-MM-dd"));
+                    command.Parameters.AddWithValue("@time_out", DateTime.Now.ToShortTimeString());
+
+                    if (command.ExecuteNonQuery() > 0)
+                    {
+                        MessageBox.Show($"{last_name} successfully timed out", "Success");
+                        attendanceTbl.Rows.Clear();
+                        loadAttendanceTable();
+                    }
+                    else MessageBox.Show("There is a problem while inserting the data. Call the Programmer to resolve this problem.", "Error");
                 }
                 conn.Close();
             }
@@ -460,6 +502,26 @@ namespace ArbitragePayroll
         private void tabPage1_Leave(object sender, EventArgs e)
         {
             updateInformation = false;
+        }
+
+        private void btnClearSelection_Click(object sender, EventArgs e)
+        {
+            empTbl.ClearSelection();
+        }
+
+        private bool checkIfTimedIn(string empId, SQLiteCommand command, SQLiteConnection conn)
+        {
+            string query = @"SELECT * FROM ATTENDANCE WHERE emp_id=@empid AND date_in=date('now')";
+            command.CommandText = query;
+            command.Connection = conn;
+            command.Parameters.AddWithValue("@empid", empId);
+
+            using (SQLiteDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read()) 
+                    return true;
+                return false;
+            }
         }
     }
 }

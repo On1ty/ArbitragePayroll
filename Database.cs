@@ -87,7 +87,10 @@ namespace ArbitragePayroll
                                 (emp_id,last,first,middle,address,dob,civil,nationality,sss,philhealth,pagibig,tin,email,mobile,position,class,basic,allowance)
                                 VALUES
                                 ('20-0102-003', 'Pallo', 'Juan Miguel', '', '571 D. Ignacio Compound, Caloocan City', '01-03-1999', 'Single', 'Filipino', '', '', '', '', 'juanity.andoy@gmail.com', '09165569164', 'Programmer', 'Regular', '500', '1500'),
-                                ('20-0102-004', 'Andoy', 'Juan Miguel', '', '571 D. Ignacio Compound, Caloocan City', '01-03-1999', 'Single', 'Filipino', '', '', '', '', 'juanity.andoy@gmail.com', '09165569164', 'Programmer', 'Regular', '500', '1500')";
+                                ('20-0102-004', 'Sarthou', 'Carl Joseph', '', '571 D. Ignacio Compound, Caloocan City', '01-03-1999', 'Single', 'Filipino', '', '', '', '', 'juanity.andoy@gmail.com', '09165569164', 'Programmer', 'Regular', '500', '1500'),
+                                ('20-0102-005', 'Cayon', 'Sixmar Simon', '', '571 D. Ignacio Compound, Caloocan City', '01-03-1999', 'Single', 'Filipino', '', '', '', '', 'juanity.andoy@gmail.com', '09165569164', 'Programmer', 'Regular', '500', '1500'),
+                                ('20-0102-006', 'Bondoc III', 'Leonardo', '', '571 D. Ignacio Compound, Caloocan City', '01-03-1999', 'Single', 'Filipino', '', '', '', '', 'juanity.andoy@gmail.com', '09165569164', 'Programmer', 'Regular', '500', '1500')";
+
                         command.CommandText = query;
                         command.Connection = conn;
                         command.ExecuteNonQuery();

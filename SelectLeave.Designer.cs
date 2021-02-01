@@ -30,40 +30,20 @@ namespace ArbitragePayroll
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectLeave));
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
             this.bunifuTileButton4 = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButton3 = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButton2 = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnClose = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
-            this.bunifuPanel1.SuspendLayout();
+            this.bunifuShadowPanel1 = new Bunifu.UI.WinForms.BunifuShadowPanel();
+            this.bunifuShadowPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuElipse1
             // 
             this.bunifuElipse1.ElipseRadius = 5;
             this.bunifuElipse1.TargetControl = this;
-            // 
-            // bunifuPanel1
-            // 
-            this.bunifuPanel1.BackgroundColor = System.Drawing.Color.White;
-            this.bunifuPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuPanel1.BackgroundImage")));
-            this.bunifuPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
-            this.bunifuPanel1.BorderRadius = 3;
-            this.bunifuPanel1.BorderThickness = 1;
-            this.bunifuPanel1.Controls.Add(this.bunifuTileButton4);
-            this.bunifuPanel1.Controls.Add(this.bunifuTileButton3);
-            this.bunifuPanel1.Controls.Add(this.bunifuTileButton2);
-            this.bunifuPanel1.Controls.Add(this.btnClose);
-            this.bunifuPanel1.Controls.Add(this.bunifuTileButton1);
-            this.bunifuPanel1.Location = new System.Drawing.Point(12, 12);
-            this.bunifuPanel1.Name = "bunifuPanel1";
-            this.bunifuPanel1.ShowBorders = true;
-            this.bunifuPanel1.Size = new System.Drawing.Size(760, 157);
-            this.bunifuPanel1.TabIndex = 0;
             // 
             // bunifuTileButton4
             // 
@@ -78,7 +58,7 @@ namespace ArbitragePayroll
             this.bunifuTileButton4.ImageZoom = 50;
             this.bunifuTileButton4.LabelPosition = 35;
             this.bunifuTileButton4.LabelText = "Birthday";
-            this.bunifuTileButton4.Location = new System.Drawing.Point(462, 8);
+            this.bunifuTileButton4.Location = new System.Drawing.Point(484, 25);
             this.bunifuTileButton4.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.bunifuTileButton4.Name = "bunifuTileButton4";
             this.bunifuTileButton4.Size = new System.Drawing.Size(140, 140);
@@ -97,7 +77,7 @@ namespace ArbitragePayroll
             this.bunifuTileButton3.ImageZoom = 50;
             this.bunifuTileButton3.LabelPosition = 35;
             this.bunifuTileButton3.LabelText = "Sick";
-            this.bunifuTileButton3.Location = new System.Drawing.Point(158, 8);
+            this.bunifuTileButton3.Location = new System.Drawing.Point(180, 25);
             this.bunifuTileButton3.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.bunifuTileButton3.Name = "bunifuTileButton3";
             this.bunifuTileButton3.Size = new System.Drawing.Size(140, 140);
@@ -116,7 +96,7 @@ namespace ArbitragePayroll
             this.bunifuTileButton2.ImageZoom = 50;
             this.bunifuTileButton2.LabelPosition = 35;
             this.bunifuTileButton2.LabelText = "Emergency";
-            this.bunifuTileButton2.Location = new System.Drawing.Point(310, 8);
+            this.bunifuTileButton2.Location = new System.Drawing.Point(332, 25);
             this.bunifuTileButton2.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.bunifuTileButton2.Name = "bunifuTileButton2";
             this.bunifuTileButton2.Size = new System.Drawing.Size(140, 140);
@@ -135,7 +115,7 @@ namespace ArbitragePayroll
             this.btnClose.ImageZoom = 50;
             this.btnClose.LabelPosition = 35;
             this.btnClose.LabelText = "Close";
-            this.btnClose.Location = new System.Drawing.Point(614, 8);
+            this.btnClose.Location = new System.Drawing.Point(636, 25);
             this.btnClose.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(140, 140);
@@ -155,24 +135,50 @@ namespace ArbitragePayroll
             this.bunifuTileButton1.ImageZoom = 50;
             this.bunifuTileButton1.LabelPosition = 35;
             this.bunifuTileButton1.LabelText = "Vacation";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(6, 8);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(28, 25);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(140, 140);
             this.bunifuTileButton1.TabIndex = 0;
             // 
+            // bunifuShadowPanel1
+            // 
+            this.bunifuShadowPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuShadowPanel1.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.bunifuShadowPanel1.BorderRadius = 1;
+            this.bunifuShadowPanel1.BorderThickness = 1;
+            this.bunifuShadowPanel1.Controls.Add(this.bunifuTileButton4);
+            this.bunifuShadowPanel1.Controls.Add(this.bunifuTileButton1);
+            this.bunifuShadowPanel1.Controls.Add(this.bunifuTileButton3);
+            this.bunifuShadowPanel1.Controls.Add(this.btnClose);
+            this.bunifuShadowPanel1.Controls.Add(this.bunifuTileButton2);
+            this.bunifuShadowPanel1.FillStyle = Bunifu.UI.WinForms.BunifuShadowPanel.FillStyles.Solid;
+            this.bunifuShadowPanel1.GradientMode = Bunifu.UI.WinForms.BunifuShadowPanel.GradientModes.Vertical;
+            this.bunifuShadowPanel1.Location = new System.Drawing.Point(1, -2);
+            this.bunifuShadowPanel1.Name = "bunifuShadowPanel1";
+            this.bunifuShadowPanel1.PanelColor = System.Drawing.Color.WhiteSmoke;
+            this.bunifuShadowPanel1.PanelColor2 = System.Drawing.Color.WhiteSmoke;
+            this.bunifuShadowPanel1.ShadowColor = System.Drawing.Color.DarkGray;
+            this.bunifuShadowPanel1.ShadowDept = 2;
+            this.bunifuShadowPanel1.ShadowDepth = 10;
+            this.bunifuShadowPanel1.ShadowStyle = Bunifu.UI.WinForms.BunifuShadowPanel.ShadowStyles.Surrounded;
+            this.bunifuShadowPanel1.ShadowTopLeftVisible = false;
+            this.bunifuShadowPanel1.Size = new System.Drawing.Size(805, 191);
+            this.bunifuShadowPanel1.Style = Bunifu.UI.WinForms.BunifuShadowPanel.BevelStyles.Flat;
+            this.bunifuShadowPanel1.TabIndex = 1;
+            // 
             // SelectLeave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(786, 180);
-            this.Controls.Add(this.bunifuPanel1);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(809, 190);
+            this.Controls.Add(this.bunifuShadowPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SelectLeave";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SelectLeave";
-            this.bunifuPanel1.ResumeLayout(false);
+            this.bunifuShadowPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -180,11 +186,11 @@ namespace ArbitragePayroll
         #endregion
 
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
-        private Bunifu.UI.WinForms.BunifuPanel bunifuPanel1;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton1;
         private Bunifu.Framework.UI.BunifuTileButton btnClose;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton4;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton3;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton2;
+        private Bunifu.UI.WinForms.BunifuShadowPanel bunifuShadowPanel1;
     }
 }
